@@ -1,4 +1,4 @@
-#import "src/main.typ": resume
+#import "src/main.typ": *
 
 #let author = "Bake Jones"
 #let phone = "123-456-7890"
@@ -14,5 +14,20 @@
   github: github,
 )
 
-#lorem(10)
+= Technical Skills
+#skill-item()
+#skill-item()
+#skill-item()
 
+= Personal Projects
+#project-item()
+#project-item()
+#project-item()
+
+= Work Experiences
+#work-item()
+#work-item()
+
+= Education
+#education-item()
+#education-item()

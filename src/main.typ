@@ -1,9 +1,9 @@
 #let resume(
-  author: "",
-  phone: "",
-  email: "",
-  linkedin: "",
-  github: "",
+  author: "author",
+  phone: "123-456-7890",
+  email: "email@example.com",
+  linkedin: "linkedin.com/in/author",
+  github: "github.com/author",
   page-settings: (
     paper: "us-letter",
     font: "New Computer Modern",
@@ -23,6 +23,13 @@
     font: page-settings.font,
     size: page-settings.font-size,
   )
+
+  show heading.where(level: 1): it => {
+    set align(left)
+    text(weight: "light")[#smallcaps(it)]
+    v(-1em)
+    line(length: 100%, stroke: 0.05em)
+  }
 
   // format a header item depending on their type (e.g. phone, email, url)
   let header-item(value, url-scheme: "") = {
@@ -53,5 +60,112 @@
   linebreak()
   header-items-list.filter(x => x != "").join(" | ")
 
+  set par(justify: true)
   doc
+}
+
+#let date-format(start-date: "2025", end-date: "Present") = {
+  if end-date == "Present" or end-date == "" {
+    start-date + " - Present"
+  } else {
+    start-date + " - " + end-date
+  }
+}
+
+#let education-item(
+  name: "University Name",
+  degree: "Degree Name",
+  location: "City, State/Province",
+  start-date: "Start Date",
+  end-date: "End Date",
+) = {
+  pad(left: 1em, right: 1em)[
+    #grid(
+      columns: (1fr, auto),
+      align(left)[
+        #text(weight: "bold")[#name] \
+        #text(style: "italic")[#degree] \
+      ],
+      align(right)[
+        #location \
+        #text(style: "italic")[
+          #date-format(start-date: start-date, end-date: end-date)
+        ] \
+      ],
+    )
+  ]
+}
+
+#let skill-item(
+  category: "Category Name",
+  skills: ("Skill 1", "Skill 2", "Skill 3"),
+) = {
+  set block(above: 0.6em)
+  pad(left: 1em, right: 1em)[
+    #set align(left)
+    #block()[
+      #text(weight: "bold")[#category:]
+      #skills.join(", ")
+    ]
+  ]
+}
+
+#let project-item(
+  name: "Project Name",
+  technologies: ("Tech 1", "Tech 2"),
+  start-date: "Start Date",
+  end-date: "End Date",
+  points: ("Did something cool", "Did another thing"),
+) = {
+  pad(left: 1em, right: 1em)[
+    #grid(
+      columns: (1fr, auto),
+      align(left)[
+        #block()[
+          #text(weight: "bold")[#name]
+          |
+          #text(style: "italic")[#technologies.join(", ")]
+        ]
+
+        #set block(above: 0.6em)
+        #pad(left: 1em)[
+          #list(..points)
+        ]
+      ],
+      align(right)[
+        #date-format(start-date: start-date, end-date: end-date)
+      ],
+    )
+
+  ]
+}
+
+#let work-item(
+  company: "Company Name",
+  position: "Job Title",
+  start-date: "Start Date",
+  end-date: "End Date",
+  location: "City, State/Province",
+  points: ("Did something cool", "Did another thing"),
+) = {
+  pad(left: 1em, right: 1em)[
+    #grid(
+      columns: (1fr, auto),
+      align(left)[
+        #block()[
+          #text(weight: "bold")[#position]
+          #linebreak()
+          #text(style: "italic")[#position]
+        ]
+
+        #set block(above: 0.6em)
+        #pad(left: 1em)[
+          #list(..points)
+        ]
+      ],
+      align(right)[
+        #date-format(start-date: start-date, end-date: end-date)
+      ],
+    )
+  ]
 }
