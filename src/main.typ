@@ -25,7 +25,7 @@
 
   show heading.where(level: 1): it => {
     set align(left)
-    text(weight: "light")[#smallcaps(it)]
+    text(size: 13pt, weight: "light")[#smallcaps(it)]
     v(-1em)
     line(length: 100%, stroke: 0.05em)
   }
@@ -36,14 +36,16 @@
       return
     }
 
-    if link == "" {
-      value
-    } else if url-scheme == "https://" or url-scheme == "mailto:" {
-      show link: underline
-      link(url-scheme + value)[#value]
-    } else {
-      link(url-scheme + value)[#value]
-    }
+    text(size: 10pt)[
+      #if link == "" {
+        value
+      } else if url-scheme == "https://" or url-scheme == "mailto:" {
+        show link: underline
+        link(url-scheme + value)[#value]
+      } else {
+        link(url-scheme + value)[#value]
+      }
+    ]
   }
 
   // create a lsit of header items, filtering out any that are empty and joining with a separator "|"
@@ -57,7 +59,7 @@
   set align(center)
   text(size: page-settings.author-font-size, weight: "bold")[#author]
   linebreak()
-  header-items-list.filter(x => x != "").join(" | ")
+  header-items-list.filter(x => x != "").join("|")
 
   set par(justify: true)
   doc
