@@ -8,7 +8,7 @@
     paper: "us-letter",
     font: "New Computer Modern",
     font-size: 11pt,
-    author-font-size: 20pt,
+    author-font-size: 24pt,
     margin: 0.5in,
   ),
   doc,
@@ -16,7 +16,6 @@
   set document(author: author, title: author + " Resume")
   set page(
     paper: page-settings.paper,
-    numbering: "1",
     margin: page-settings.margin,
   )
   set text(
