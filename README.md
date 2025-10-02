@@ -14,5 +14,4 @@ typst watch resume.typ
 
 # Compile to resume.typ
 typst compile resume.typ
-
 ```
