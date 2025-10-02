@@ -4,23 +4,21 @@
   email: "email@example.com",
   linkedin: "linkedin.com/in/author",
   github: "github.com/author",
-  page-settings: (
-    paper: "us-letter",
-    font: "New Computer Modern",
-    font-size: 11pt,
-    author-font-size: 24pt,
-    margin: 0.5in,
-  ),
+  paper: "us-letter",
+  font: "New Computer Modern",
+  font-size: 11pt,
+  author-font-size: 24pt,
+  margin: 0.5in,
   doc,
 ) = {
   set document(author: author, title: author + " Resume")
   set page(
-    paper: page-settings.paper,
-    margin: page-settings.margin,
+    paper: paper,
+    margin: margin,
   )
   set text(
-    font: page-settings.font,
-    size: page-settings.font-size,
+    font: font,
+    size: font-size,
   )
 
   show heading.where(level: 1): it => {
@@ -57,7 +55,7 @@
   )
 
   set align(center)
-  text(size: page-settings.author-font-size, weight: "bold")[#author]
+  text(size: author-font-size, weight: "bold")[#author]
   linebreak()
   header-items-list.filter(x => x != "").join("|")
 
@@ -127,17 +125,17 @@
           |
           #text(style: "italic")[#technologies.join(", ")]
         ]
-
-        #set block(above: 0.6em)
-        #pad(left: 1em)[
-          #list(..points)
-        ]
       ],
       align(right)[
         #date-format(start-date: start-date, end-date: end-date)
       ],
     )
 
+    #set align(left)
+    #set block(above: 0.6em)
+    #pad(left: 1em)[
+      #list(..points)
+    ]
   ]
 }
 
@@ -156,17 +154,20 @@
         #block()[
           #text(weight: "bold")[#position]
           #linebreak()
-          #text(style: "italic")[#position]
-        ]
-
-        #set block(above: 0.6em)
-        #pad(left: 1em)[
-          #list(..points)
+          #text(style: "italic")[#company]
         ]
       ],
       align(right)[
         #date-format(start-date: start-date, end-date: end-date)
+        #linebreak()
+        #text(style: "italic")[#location]
       ],
     )
+
+    #set align(left)
+    #set block(above: 0.6em)
+    #pad(left: 1em)[
+      #list(..points)
+    ]
   ]
 }
