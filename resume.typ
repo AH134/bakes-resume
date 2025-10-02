@@ -2,9 +2,9 @@
 
 #let author = "Bake Jones"
 #let phone = "123-456-7890"
-#let email = "bobjones@example.com"
-#let linkedin = "linkedin.com/in/bakejones"
-#let github = "github.com/bakejones"
+#let email = "bjones@example.com"
+#let linkedin = "linkedin.com/in/bjones"
+#let github = "github.com/bjones"
 
 #show: resume.with(
   author: author,
