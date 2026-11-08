@@ -4,6 +4,11 @@ bakes resume, written in Typst.
 
 ![example.png](example.png)
 
+## Requirements
+
+- Install Typst: https://typst.app/docs/install/
+- Ensure the `typst` command is available in your shell.
+
 ## Usage
 
 - Fork the repo and edit the resume in `src/resume.typ` or the template in `template/resume.typ`.
