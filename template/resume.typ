@@ -4,26 +4,28 @@
   email: "email@example.com",
   linkedin: "linkedin.com/in/author",
   github: "github.com/author",
-  paper: "us-letter",
-  font: "New Computer Modern",
-  font-size: 11pt,
-  author-font-size: 24pt,
-  margin: 0.5in,
+  page-settings: (
+    paper: "us-letter",
+    font: "New Computer Modern",
+    font-size: 11pt,
+    author-font-size: 20pt,
+    margin: 0.5in,
+  ),
   doc,
 ) = {
   set document(author: author, title: author + " Resume")
   set page(
-    paper: paper,
-    margin: margin,
+    paper: page-settings.paper,
+    margin: page-settings.margin,
   )
   set text(
-    font: font,
-    size: font-size,
+    font: page-settings.font,
+    size: page-settings.font-size,
   )
 
   show heading.where(level: 1): it => {
     set align(left)
-    text(size: 13pt, weight: "light")[#smallcaps(it)]
+    text(weight: "light")[#smallcaps(it)]
     v(-1em)
     line(length: 100%, stroke: 0.05em)
   }
@@ -34,20 +36,19 @@
       return
     }
 
-    text(size: 10pt)[
-      #if link == "" {
-        value
-      } else if url-scheme == "https://" or url-scheme == "mailto:" {
-        show link: underline
-        link(url-scheme + value)[#value]
-      } else {
-        link(url-scheme + value)[#value]
-      }
-    ]
+    if link == "" {
+      value
+    } else if url-scheme == "https://" or url-scheme == "mailto:" {
+      show link: underline
+      link(url-scheme + value)[#value]
+    } else {
+      link(url-scheme + value)[#value]
+    }
   }
 
   // create a lsit of header items, filtering out any that are empty and joining with a separator "|"
   let header-items-list = (
+    header-item("Vancouver, BC", url-scheme: "str"),
     header-item(phone, url-scheme: "tel:"),
     header-item(email, url-scheme: "mailto:"),
     header-item(linkedin, url-scheme: "https://"),
@@ -55,9 +56,9 @@
   )
 
   set align(center)
-  text(size: author-font-size, weight: "bold")[#author]
+  text(size: page-settings.author-font-size, weight: "bold")[#author]
   linebreak()
-  header-items-list.filter(x => x != "").join("|")
+  header-items-list.filter(x => x != "").join(" | ")
 
   set par(justify: true)
   doc
@@ -131,8 +132,8 @@
       ],
     )
 
-    #set align(left)
     #set block(above: 0.6em)
+    #set align(left)
     #pad(left: 1em)[
       #list(..points)
     ]
@@ -159,13 +160,11 @@
       ],
       align(right)[
         #date-format(start-date: start-date, end-date: end-date)
-        #linebreak()
-        #text(style: "italic")[#location]
       ],
     )
 
-    #set align(left)
     #set block(above: 0.6em)
+    #set align(left)
     #pad(left: 1em)[
       #list(..points)
     ]

@@ -1,17 +1,25 @@
 # bakes-resume
-bakes resume, writtin in Typst!
+
+bakes resume, written in Typst.
 
 ![example.png](example.png)
 
 ## Usage
-- fork the repo and edit the `resume.typ` file.
-- look through `example.typ` for a sample resume.
+
+- Fork the repo and edit the resume in `src/resume.typ` or the template in `template/resume.typ`.
+- Use the project scripts to create or edit job-specific application folders under `applications/`.
+- Review the bundled resume templates for a working example.
 
 ## Typst CLI
-```
-# Watch
-typst watch resume.typ
 
-# Compile to resume.typ
-typst compile resume.typ
+```bash
+# Create a job folder and start watching its resume + cover letter
+./create.sh 100000 "Moyang Software" "Software Engineer"
+
+# Reopen an existing job and watch its files again
+./edit.sh 100000
+
+# Direct Typst usage for the source templates
+typst watch src/resume.typ
+typst compile src/resume.typ
 ```

@@ -1,4 +1,4 @@
-#import "src/main.typ": *
+#import "/template/resume.typ": *
 
 #let author = "Bake Jones"
 #let phone = "123-456-7890"
