@@ -1,2 +1,5 @@
+# remove to keep pdf in the repo
 *.pdf
-!applications/100000-moyang-software-engineer/100000-moyang-submission/moyang-resume.pdf
+
+# example pdf
+!applications/100000-moyang-software-engineer/100000-moyang-submission/*.pdf
