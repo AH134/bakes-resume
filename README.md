@@ -19,7 +19,7 @@ bakes resume, written in Typst.
 
 ```bash
 # Create a job folder and start watching its resume + cover letter
-./create.sh 100000 "Moyang Software" "Software Engineer"
+./create.sh 100000 "Moyang" "Software Engineer"
 
 # Reopen an existing job and watch its files again
 ./edit.sh 100000
